@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Spring Boot Properties</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css"	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+ <style type="text/css">
+ .nowrap { white-space:nowrap;}
+ body {
+    background-image: url("https://projects.spring.io/spring-boot/img/project-icon-large.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+</style>
+</head>
+<body>
+ <div class="container">
+  <script type="text/javascript" src="webjars/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript"	src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>  
+  <script type="text/javascript">
+$(document).ready(function(){
+		
+function propertiesService(filter) {
+		$.ajax({
+			type : "GET",
+			url : "/api/produto/findAll",
+			data : '$format=json',
+			dataType : 'json',
+			success : function(data) {
+				$("#propTable tr").remove();
+				$("#propTable tbody").append("<tr><th>id</th><th>descricao</th><th>marca</th></tr>");
+				var total=0;
+				$.each(data, function(d, results) {
+				  $("#propTable tbody").append(
+					"<tr>"  
+				    + "<td class=\"text-nowrap\">" 
+				    + results.id
+				    + "</td>" + "<td class=\"text-nowrap\">"
+				    + results.descricao
+				    + "</td>" + "<td class=\"text-nowrap\">"
+			        + results.marca
+					+ "</td>" 
+					+ "</tr>")
+					total++;
+				})
+				$("#results").text(total+" produtos encontrados");
+			}
+		});
+	};
+		
+	propertiesService();
+	
+			
+}); 
+</script>
+
+<table id="propTable" class="table table-hover">
+ <tbody>
+ </tbody>
+</table>
+</div>
+</body>
+</html>
