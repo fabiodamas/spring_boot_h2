@@ -3,4 +3,4 @@ Projeto de exemplo usando Spring Boot, listando dados de produtos e clientes.
 
 * Telas:
 
-![](screen_shot/menu_principal.png)
+<img src="screen_shot/menu_principal.png">
